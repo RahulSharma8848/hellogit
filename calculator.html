@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id ="calc">
+			Number 1: <input type ="number" v-model.number = "number1">
+			Number 2: <input type="number" v-model.Number ="number2">
+			<select v-model="operand">
+				<option value = "add" selected>Add(+)</option>
+				<option value="subtract">Subtract(-)</option>
+				<option value="multiply">Multiply(*)</option>
+				<option value="divide">Divide(/)</option>
+			</select>
+			<p>Result is: {{ calculate }}</p>
+			
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		var instance = new Vue({
+			el: '#calc',
+			
+			data:{
+				number1: 0,
+				number2: 0,
+				operand: ""
+			},
+			computed:{
+				calculate(){
+					switch(this.operand){
+						case "add":
+							return this.number1 + this.number2
+						case  "subtract":
+							return this.number1 - this.number2
+						case "multiply":
+							return this.number1 * this.number2
+						case "divide":
+							return this.number1 / this.number
+					}
+				}
+			}
+
+		})
+	</script>
+</html>
