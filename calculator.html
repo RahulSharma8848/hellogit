@@ -1,17 +1,19 @@
 <html>
 	<head>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			li{
+				list-style: none;
+			}
+		</style>
 	</head>
 	<body>
 		<div id ="calc">
 			Number 1: <input type ="number" v-model.number = "number1">
 			Number 2: <input type="number" v-model.Number ="number2">
-			<select v-model="operand">
-				<option value = "add" selected>Add(+)</option>
-				<option value="subtract">Subtract(-)</option>
-				<option value="multiply">Multiply(*)</option>
-				<option value="divide">Divide(/)</option>
-			</select>
+			<ul>
+				<li v-for="op in operations" @click = "selectedOp = op"><button>{{ op }}</button></li>
+			</ul>
 			<p>Result is: {{ calculate }}</p>
 			
 			
@@ -23,20 +25,21 @@
 			el: '#calc',
 			
 			data:{
-				number1: 0,
-				number2: 0,
-				operand: ""
+				number1: null,
+				number2: null,
+				operations: ['Add','Subtract','Multiply','Divide'],
+				selectedOp: 'Add'
 			},
 			computed:{
 				calculate(){
-					switch(this.operand){
-						case "add":
+					switch(this.selectedOp){
+						case "Add":
 							return this.number1 + this.number2
-						case  "subtract":
+						case  "Subtract":
 							return this.number1 - this.number2
-						case "multiply":
+						case "Multiply":
 							return this.number1 * this.number2
-						case "divide":
+						case "Divide":
 							return this.number1 / this.number2
 					}
 				}
